@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "Companies & Organisations";
+}
+
+<div class="container-fluid px-0">
+    <article>
+        <section id="bg3" class="col-md-12 col-sm-12 col-12">
+            <header id="ind">Companies and Organisations</header> <!--Large Header-->
+            <p id="intro">
+                The Industry 4.0 market is forecasted to reach $1 trillion by 2030, dominated by global technology giants including Alphabet-Google, HP, Samsung, IBM, NEC, Microsoft, and more.
+                According to the new 4-volume report by HSRC: Global Industry 4.0 Market & Technologies 2018-2023, the Industry 4.0 market will reach $214B by 2023
+                <br /> <a href="https://www.prnewswire.com/news-releases/global-tech-giants-to-lead-the-industry-40-revolution-300585640.html">www.prnews.com</a>
+            </p>
+        </section>
+
+        <section id="tech" class="row no-gutters">
+            <div id="company1" class="container col-md-6 col-sm-6 col-12">
+                <div id="textcompany1" class="centered hidden">
+                    <h2 id="boothead"> IBM</h2>
+                    <a href="https://www.ibm.com/industries/manufacturing" class="btn btn-primary">Visit Website</a>
+                </div>
+                <img src="~/images/Companies/ibm.jpg" class="img-fluid w-100">
+            </div>
+            <div id="company2" class="col-md-6 col-sm-6 col-12">
+                <div id="textcompany2" class="centered  hidden">
+                    <h1 id="boothead">Amazon</h1>
+                    <a href="https://aws.amazon.com/ai/" class="btn btn-primary">Visit Website</a>
+                </div>
+                <img src="~/images/Companies/amazon.jpg" class="img-fluid w-100">
+            </div>
+            <div id="company3" class="col-md-12 col-sm-12 col-12">
+                <div id="textcompany3" class="centered  hidden">
+                    <h1 id="boothead">Amazon</h1>
+                    <a href="https://aws.amazon.com/ai/" class="btn btn-primary">Visit Website</a>
+                </div>
+                <img src="~/images/Companies/google.jpg" class="img-fluid w-100">
+            </div>
+            <div id="company4" class="col-md-6 col-sm-6 col-12">
+                <div id="textcompany4" class="centered  hidden">
+                    <h1 id="boothead">Amazon</h1>
+                    <a href="https://aws.amazon.com/ai/" class="btn btn-primary">Visit Website</a>
+                </div>
+                <img src="~/images/Companies/microsoft.jpg" class="img-fluid w-100">
+            </div>
+            <div id="company5" class="col-md-6 col-sm-6 col-12">
+                <div id="textcompany5" class="centered  hidden">
+                    <h1 id="boothead">CSIRO</h1>
+                    <a href="https://www.csiro.au/" class="btn btn-primary">Visit Website</a>
+                </div>
+                <img src="~/images/Companies/CSIRO.jpg" class="img-fluid w-100">
+            </div>
+
+            <div id="company6" class="col-md-12 col-sm-12 col-12">
+                <div id="textcompany6"class="centered hidden">
+                    <h1 id="boothead">Department of Industry, Science, Energy and Resources</h1>
+                    <a href="https://www.industry.gov.au/" class="btn btn-primary">Visit Website</a>
+                </div>
+                <img src="~/images/Companies/department.jpg" class="img-fluid w-100">
+            </div>
+        </section>
+        <hr />
+    </article>
+    <div>
+        @model IEnumerable<Web_Dev_Assignment_1.Models.DiscussionForum>
+
+        <h1 id="feedback">Feedback</h1>
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div style="text-align:center;">
+                Please <a href="~/Identity/Account/Login">login</a> or <a href="~/Identity/Account/Register?returnUrl=~/Account/Register">create an account</a>
+                to post your discussion on this page
+            </div>
+        }
+        else
+        {
+            <div style="text-align:center;">
+                <a href="~/DiscussionForums/Create/" class="btn btn-primary">Submit your feedback</a>
+            </div>
+        }
+
+        @foreach (var item in Model)
+        {
+            <h2>@Html.DisplayFor(modelItem => item.TopicTitle)</h2>
+            <p>
+                @{ for (int i = 0; i < item.Rating; i++)
+                    { <span style="color: #f8bd08; ">&#x2605;</span> }
+                    for (int i = 0; i < 5 - item.Rating; i++)
+                    { <span>&#x2606;</span> } }
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.MessageContent)
+            </p>
+            <p> Posted by <b>@Html.DisplayFor(modelItem => item.UserName)</b> on @Html.DisplayFor(modelItem => item.PostDate)</p>
+            <a asp-controller="DiscussionForums" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-dark">Details</a>
+            <a asp-controller="DiscussionForums" asp-action="IncreaseLike" asp-route-id="@item.Id" class="btn btn-success">Like</a>
+            <a asp-controller="DiscussionForums" asp-action="IncreaseDislike" asp-route-id="@item.Id" class="btn btn-danger">Dislike</a>
+            <a asp-controller="DiscussionForums" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-dark">Edit</a>
+            <a asp-controller="DiscussionForums" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-dark">Delete</a>
+            <hr />
+        }
+    </div>
+</div>
