@@ -131,6 +131,7 @@
 
     .og-fullimg img {
         display: inline-block;
+
         max-height: 100%;
         max-width: 100%
     }
@@ -350,7 +351,8 @@
     }
 
 .elastislide-horizontal {
-    padding: 10px 40px
+    padding: 10px 40px;
+    visibility: hidden;
 }
 
 .elastislide-vertical {
@@ -377,7 +379,8 @@
     }
 
 .elastislide-horizontal ul {
-    white-space: nowrap
+    white-space: nowrap ;
+    visibility: hidden;
 }
 
 .elastislide-carousel ul li {
@@ -387,7 +390,8 @@
 
 .elastislide-horizontal ul li {
     height: 100%;
-    display: inline-block
+    display: inline-block;
+    visibility: hidden;
 }
 
 .elastislide-vertical ul li {
@@ -428,7 +432,8 @@
 .elastislide-horizontal nav span {
     top: 50%;
     left: 10px;
-    margin-top: -11px
+    margin-top: -11px;
+    visibility: hidden;
 }
 
 .elastislide-vertical nav span {
@@ -441,7 +446,8 @@
 .elastislide-horizontal nav span.elastislide-next {
     right: 10px;
     left: auto;
-    background-position: 4px -17px
+    background-position: 4px -17px;
+    visibility: hidden;
 }
 
 .elastislide-vertical nav span.elastislide-next {
